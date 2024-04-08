@@ -1,6 +1,6 @@
 {
   "name": "runatics",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
@@ -66,7 +66,7 @@
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
-  "description": "Svelte icon webkit starter",
+  "description": "A simple Google analyics component for Svelte Runes project",
   "author": {
     "name": "Shinichi Okada",
     "email": "connect@codewithshin.com",
@@ -78,8 +78,9 @@
   "keywords": [
     "svelte",
     "sveltekit",
-    "icons",
-    "svg"
+    "google analytics",
+    "analytics",
+    "runes"
   ],
   "repository": {
     "type": "git",
