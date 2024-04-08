@@ -1,1 +1,1 @@
-export { default as Runatics } from './Runatics';
+export { default as Runatics } from './Runatics.svelte';

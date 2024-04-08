@@ -17,12 +17,12 @@
     random_tailwind_color,
     DotsHorizontalOutline,
     XSolid
-  } from 'svelte-icon-webkit';
+  } from 'runes-webkit';
   import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
 
-  function isIncluded(url: string, allowedUrls: string[]): boolean {
-    return allowedUrls.some((allowedUrl) => url.startsWith(allowedUrl));
-  }
+  // function isIncluded(url: string, allowedUrls: string[]): boolean {
+  //   return allowedUrls.some((allowedUrl) => url.startsWith(allowedUrl));
+  // }
 
   type LiType = {
     name: string;
@@ -30,7 +30,7 @@
     icon?: ComponentType;
   };
   interface Props {
-    lis: LiType[];
+    lis?: LiType[];
     siteName: string;
     twitterUrl?: string;
     githubUrl?: string;
@@ -43,14 +43,14 @@
     twitterUrl,
     githubUrl,
     headerClass,
-    urlsToIncludeSwitcher = ['/guide'],
+    urlsToIncludeSwitcher = [''],
     ...restProps
   }: Props = $props();
 
   let currentUrl = $state($page.url.pathname);
   let nav = uiHelpers();
 
-  let include = $derived(isIncluded(currentUrl, urlsToIncludeSwitcher));
+  // let include = $derived(isIncluded(currentUrl, urlsToIncludeSwitcher));
 
   let navStatus = $state(false);
   let toggleNav = nav.toggle;
@@ -93,9 +93,9 @@
         spanclass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
       />
       <div class="ml-auto flex items-center lg:order-1">
-        {#if include}
+        
           <DynamicCodeBlockStyle />
-        {/if}
+        
         <DotsHorizontalOutline onclick={toggle} class="ml-4 dark:text-white" size="lg" />
         <div class="relative">
           <Dropdown {isOpen} divclass="absolute -left-[30px] w-9">
@@ -116,15 +116,17 @@
         </div>
       </div>
     {/snippet}
+    {#if lis}
     <NavUl {ulclass}>
       {@render navLi(lis)}
     </NavUl>
+    {/if}
   </Navbar>
 </header>
 
 <!--
 @component
-[Go to docs](https://svelte-icon-webkit.codewithshin.com/)
+[Go to docs](https://runes-webkit.codewithshin.com/)
 ## Props
 @props: lis: LiType[];
 @props:siteName: string;

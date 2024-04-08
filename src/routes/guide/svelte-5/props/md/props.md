@@ -1,6 +1,0 @@
-- size = ctx.size || '24',
-- role = ctx.role || 'img',
-- ariaLabel = 'Zoom',
-- fill = ctx.fill || '#fff',
-- class,
-- ...restProps
