@@ -4,16 +4,15 @@
     SupportBanner,
     TechInfo,
     pkg,
-    HighlightCompo,  
-    H2, 
+    HighlightCompo,
+    H2
   } from 'runes-webkit';
-  
+
   const modules = import.meta.glob('./md/*.md', {
     query: '?raw',
     import: 'default',
     eager: true
   });
- 
 </script>
 
 <SupportBanner>

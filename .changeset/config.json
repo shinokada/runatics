@@ -1,9 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
-  "changelog": [
-    "@changesets/cli/changelog",
-  { "repo": "shinokada/runatics" }
-],
+  "changelog": ["@changesets/cli/changelog", { "repo": "shinokada/runatics" }],
   "commit": false,
   "fixed": [],
   "linked": [],

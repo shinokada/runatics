@@ -1,16 +1,12 @@
 <script>
   import '../app.pcss';
   import { page } from '$app/stores';
-  import {
-    Footer,
-
-    removeHyphensAndCapitalize
-  } from 'runes-webkit';
+  import { Footer, removeHyphensAndCapitalize } from 'runes-webkit';
   import { Runatics } from '$lib';
   import Nav from './utils/Nav.svelte';
   let { children, data } = $props();
   let currentUrl = $state($page.url.pathname);
-  const analyticsId = data.ANALYTICS_ID
+  const analyticsId = data.ANALYTICS_ID;
   $effect(() => {
     currentUrl = $page.url.pathname;
   });
@@ -27,12 +23,12 @@
   const siteName = removeHyphensAndCapitalize(__NAME__);
   const twitterUrl = 'https://twitter.com/shinokada';
   const githubUrl = `https://github.com/shinokada/${__NAME__}`;
-
 </script>
+
 <Runatics {analyticsId} />
 
 <Nav {siteName} {twitterUrl} {githubUrl} />
-<div class="lg:flex max-w-4xl mx-auto">
+<div class="mx-auto max-w-4xl lg:flex">
   <div class="relative h-full w-full overflow-y-auto px-8">
     {@render children()}
     <Footer {brand} ulClass="dark_bg_theme" />

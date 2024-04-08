@@ -1,5 +1,11 @@
 # runatics
 
+## 0.1.1
+
+### Patch Changes
+
+- 22c1ed4: fix: package.json update
+
 ## 0.0.2
 
 ### Patch Changes

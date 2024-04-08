@@ -12,12 +12,7 @@
     DropdownItem
   } from 'svelte-5-ui-lib';
   import { page } from '$app/stores';
-  import {
-    GithubSolid,
-    random_tailwind_color,
-    DotsHorizontalOutline,
-    XSolid
-  } from 'runes-webkit';
+  import { GithubSolid, random_tailwind_color, DotsHorizontalOutline, XSolid } from 'runes-webkit';
   import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
 
   // function isIncluded(url: string, allowedUrls: string[]): boolean {
@@ -93,9 +88,8 @@
         spanclass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
       />
       <div class="ml-auto flex items-center lg:order-1">
-        
-          <DynamicCodeBlockStyle />
-        
+        <DynamicCodeBlockStyle />
+
         <DotsHorizontalOutline onclick={toggle} class="ml-4 dark:text-white" size="lg" />
         <div class="relative">
           <Dropdown {isOpen} divclass="absolute -left-[30px] w-9">
@@ -117,9 +111,9 @@
       </div>
     {/snippet}
     {#if lis}
-    <NavUl {ulclass}>
-      {@render navLi(lis)}
-    </NavUl>
+      <NavUl {ulclass}>
+        {@render navLi(lis)}
+      </NavUl>
     {/if}
   </Navbar>
 </header>
