@@ -1,0 +1,3 @@
+- size = ctx.size || '24';
+- role = ctx.role || 'img';
+- fill = ctx.fill || '#fff';
