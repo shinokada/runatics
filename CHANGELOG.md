@@ -1,5 +1,12 @@
 # runatics
 
+## 0.1.2
+
+### Patch Changes
+
+- fe91fba: feat: add types
+  docs: add link to warning when the project is not set up correctly
+
 ## 0.1.1
 
 ### Patch Changes

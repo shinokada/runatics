@@ -28,7 +28,10 @@
 
 <h1 class="my-8 flex justify-center">{removeHyphensAndCapitalize(__NAME__)}</h1>
 
-<p>A simple Google analyics component for Svelte Runes project. Please follow the following steps to set it up.</p>
+<p>
+  A simple Google analyics component for Svelte Runes project. Please follow the following steps to
+  set it up.
+</p>
 
 <H2>Installation</H2>
 
