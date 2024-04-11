@@ -1,1 +1,1 @@
-pnpm i runatics
+pnpm i -D runatics
