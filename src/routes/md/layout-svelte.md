@@ -4,6 +4,6 @@
   const analyticsId = data.ANALYTICS_ID
 </script>
 
-<Runatics {analyticsId} >
+<Runatics {analyticsId} />
 
 {@render children()}

@@ -1,10 +1,12 @@
 <script lang="ts">
   import { browser } from '$app/environment';
+  import { toUpperSnakeCase } from 'runes-webkit';
   const stylesImport = import.meta.glob('./highlight/styles/*.css');
-
+  const localStorageName = toUpperSnakeCase(__NAME__) + '_CODE_BLOCK_STYLE';
+  
   // @ts-ignore
   let selected: string = $state(
-    browser && (localStorage.getItem('CODE_BLOCK_STYLE') ?? 'gigavolt')
+    browser && (localStorage.getItem(localStorageName) ?? 'gigavolt')
   );
 
   const styles = Object.entries(stylesImport).map(([path, importFn]) => ({
@@ -12,7 +14,7 @@
     name: path.slice(path.lastIndexOf('/') + 1, -4)
   }));
 
-  $effect(() => {
+   $effect(() => {
     let link: HTMLLinkElement;
     (async () => {
       const css = await import(`./highlight/styles/${selected}.css?url`);
@@ -24,7 +26,7 @@
     })();
     if (browser) {
       // get selected style from localStorage
-      localStorage.setItem('CODE_BLOCK_STYLE', selected);
+      localStorage.setItem(localStorageName, selected);
     }
     return () => {
       // clean up
@@ -41,10 +43,3 @@
     <option value={theme.value}>{theme.value}</option>
   {/each}
 </select>
-
-<!--
-@component
-[Go to docs](https://runes-webkit.codewithshin.com/)
-## Props
-@props: 
--->

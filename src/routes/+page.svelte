@@ -47,7 +47,7 @@
 
 <p>Add the following code to +layout.server.js</p>
 
-<HighlightCompo code={modules['./md/layout-server-js.md'] as string} />
+<HighlightCompo code={modules['./md/layout-server-ts.md'] as string} />
 
 <H2>+layout.svelte</H2>
 
