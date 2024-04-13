@@ -69,11 +69,11 @@ devDependencies:
     specifier: ^0.2.7
     version: 0.2.7
   runes-meta-tags:
-    specifier: ^0.2.3
-    version: 0.2.3(svelte@5.0.0-next.102)
+    specifier: ^0.2.4
+    version: 0.2.4(svelte@5.0.0-next.102)
   runes-webkit:
-    specifier: ^0.4.17
-    version: 0.4.17(@sveltejs/kit@2.5.5)(svelte@5.0.0-next.102)
+    specifier: ^0.4.21
+    version: 0.4.21(@sveltejs/kit@2.5.5)(svelte@5.0.0-next.102)
   svelte:
     specifier: 5.0.0-next.102
     version: 5.0.0-next.102
@@ -3787,16 +3787,16 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /runes-meta-tags@0.2.3(svelte@5.0.0-next.102):
-    resolution: {integrity: sha512-HQjytZTvyEjY6ZeFPbs+jZegEG2+wNxtO1CxoF8DBWC2QlHhQQvB8z+9FN4A4Cr4f//tG0t0M85yJTAZyXZArA==}
+  /runes-meta-tags@0.2.4(svelte@5.0.0-next.102):
+    resolution: {integrity: sha512-gs46hjJcmbaJu4GC0A89wLmSXCzuKFdm8lpu2cuDHEDzGPhgVzjeT1bkD65zLrtB/dnT7Tmg4kPtfxbOmkc5BA==}
     peerDependencies:
       svelte: ^5.0.0
     dependencies:
       svelte: 5.0.0-next.102
     dev: true
 
-  /runes-webkit@0.4.17(@sveltejs/kit@2.5.5)(svelte@5.0.0-next.102):
-    resolution: {integrity: sha512-DzxbF4/69/q9s8ky+smnZy7n6oraR4p4fvY1cYAJx+fQ4UvHD1K4KRZweluj9Thp6dM6JFZpHQn3jkgdyfwa4Q==}
+  /runes-webkit@0.4.21(@sveltejs/kit@2.5.5)(svelte@5.0.0-next.102):
+    resolution: {integrity: sha512-FX3LkQiAb+zMZ+w48E7KCwJFiXpHNUkaPmJz4b81LlRipD5wy/iRnPEsAZftrxw5kV3yaVsmsrEwywnhUx/BGg==}
     engines: {node: '>=18.0.0', npm: '>=7.0.0'}
     peerDependencies:
       '@sveltejs/kit': ^2.5.5

@@ -13,6 +13,9 @@
     import: 'default',
     eager: true
   });
+  const runeswebkitVersion = __RUNES_WEBKIT_VERSION__;
+  const runesMetaTagsVersion = __RUNES_META_TAG_VERSION__;
+  let newPkg = $state({...pkg, runesMetaTagsVersion, runeswebkitVersion})
 </script>
 
 <SupportBanner>
@@ -55,4 +58,4 @@
 
 <HighlightCompo code={modules['./md/layout-svelte.md'] as string} />
 
-<TechInfo {...pkg} />
+<TechInfo {...newPkg} />
