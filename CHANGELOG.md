@@ -1,5 +1,12 @@
 # runatics
 
+## 0.1.3
+
+### Patch Changes
+
+- fix: add main to package.json
+  docs: add runes-meta-tags
+
 ## 0.1.2
 
 ### Patch Changes

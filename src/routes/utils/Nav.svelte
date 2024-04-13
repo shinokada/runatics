@@ -79,18 +79,32 @@
 {/snippet}
 
 <header class={headerCls}>
-  <Navbar {navclass} {toggleNav} {closeNav} {navStatus} openMainMenu={false} breakPoint="lg" fluid div2class={divClass}>
+  <Navbar
+    {navclass}
+    {toggleNav}
+    {closeNav}
+    {navStatus}
+    openMainMenu={false}
+    breakPoint="lg"
+    fluid
+    div2class={divClass}
+  >
     {#snippet brand()}
       <NavBrand
         {siteName}
         spanclass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
       />
-      <div class="ml-auto flex items-center lg:order-1 gap-4">
+      <div class="ml-auto flex items-center gap-4 lg:order-1">
         <DynamicCodeBlockStyle />
 
         <DotsHorizontalOutline onclick={dropdown.toggle} class="ml-4 dark:text-white" size="lg" />
         <div class="relative">
-          <Dropdown dropdownStatus={dropdownStatus} closeDropdown={closeDropdown} transitionParams={transitionParams} divclass="absolute -left-[50px] top-8 w-12 pl-1.5">
+          <Dropdown
+            {dropdownStatus}
+            {closeDropdown}
+            {transitionParams}
+            divclass="absolute -left-[50px] top-8 w-12 pl-1.5"
+          >
             {#if twitterUrl}
               <DropdownItem href={twitterUrl} target="_blank" aclass="p-2 m-0"
                 ><XSolid /></DropdownItem

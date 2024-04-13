@@ -28,7 +28,7 @@ export const load = ({ url }) => {
     }
   };
   return {
-		layoutMetaTags,
-		ANALYTICS_ID
+    layoutMetaTags,
+    ANALYTICS_ID
   };
 };

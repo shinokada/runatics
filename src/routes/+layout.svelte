@@ -16,8 +16,9 @@
 
   $effect(() => {
     currentUrl = $page.url.pathname;
-    metaTags = $page.data.pageMetaTags ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags ) : data.layoutMetaTags
-
+    metaTags = $page.data.pageMetaTags
+      ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags)
+      : data.layoutMetaTags;
   });
   // const lis = [
   //   { name: 'Guide', href: '/guide/svelte-4/getting-started' },
@@ -34,7 +35,7 @@
   const githubUrl = `https://github.com/shinokada/${__NAME__}`;
 </script>
 
-<RunesMetaTags {...metaTags}/>
+<RunesMetaTags {...metaTags} />
 <Runatics {analyticsId} />
 
 <Nav {siteName} {twitterUrl} {githubUrl} />

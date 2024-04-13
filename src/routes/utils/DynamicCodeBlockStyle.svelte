@@ -3,18 +3,16 @@
   import { toUpperSnakeCase } from 'runes-webkit';
   const stylesImport = import.meta.glob('./highlight/styles/*.css');
   const localStorageName = toUpperSnakeCase(__NAME__) + '_CODE_BLOCK_STYLE';
-  
+
   // @ts-ignore
-  let selected: string = $state(
-    browser && (localStorage.getItem(localStorageName) ?? 'gigavolt')
-  );
+  let selected: string = $state(browser && (localStorage.getItem(localStorageName) ?? 'gigavolt'));
 
   const styles = Object.entries(stylesImport).map(([path, importFn]) => ({
     value: path.slice(path.lastIndexOf('/') + 1, -4),
     name: path.slice(path.lastIndexOf('/') + 1, -4)
   }));
 
-   $effect(() => {
+  $effect(() => {
     let link: HTMLLinkElement;
     (async () => {
       const css = await import(`./highlight/styles/${selected}.css?url`);
