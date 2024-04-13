@@ -1,51 +1,50 @@
 import { expect, test } from '@playwright/test';
 
-test('index page has expected h1, meta title', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  console.log(`Running ${test.info().title}`);
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Runatics' })).toBeVisible();
-  // await expect(page).toHaveTitle('Runatics');
 });
 
-// test('Icons page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/icons');
-//   await expect(page.getByRole('heading', { name: 'Icons: Svelte Supertiny' })).toBeVisible();
-//   await expect(page).toHaveTitle('Icons: Svelte Supertiny');
-// });
+test('index page has expected h1', async ({ page }) => {
+  await expect(page.getByRole('heading', { name: 'Runatics' })).toBeVisible();
+});
 
-// test('Svelte 4 getting started page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/svelte-4/getting-started');
-//   await expect(page.getByRole('heading', { name: 'Svelte Supertiny: v1' })).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny v1');
-// });
+test('index page has expected meta title', async ({ page }) => {
+  await expect(page).toHaveTitle('Runatics');
+});
 
-// test('Svelte 4 props page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/svelte-4/props');
-//   await expect(page.getByRole('heading', { name: 'Props: v1' })).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny v1 Props');
-// });
+test('index page has expected meta description', async ({ page }) => {
+  const metaDescription = page.locator('meta[name="description"]');
+  await expect(metaDescription).toHaveAttribute('content', 'A simple Google analyics component for Svelte Runes project.');
+});
 
-// test('Svelte 5 getting started page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/svelte-5/getting-started');
-//   await expect(page.getByRole('heading', { name: 'Svelte Supertiny: v2' })).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny v2');
-// });
+test('index page has expected meta keywords', async ({ page }) => {
+  const metaKeywords = page.locator('meta[name="keywords"]');
+  await expect(metaKeywords).toHaveAttribute('content', 'svelte, runes, google, analytics');
+});
 
-// test('Svelte 5 props page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/svelte-5/props');
-//   await expect(page.getByRole('heading', { name: 'Props: v2' })).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny v2 Props');
-// });
+test('index page has expected meta og', async ({ page }) => {
+  const metaOgTitle = page.locator('meta[property="og:title"]');
+  await expect(metaOgTitle).toHaveAttribute('content', 'Runatics');
+  const metaOgDescription = page.locator('meta[property="og:description"]');
+  await expect(metaOgDescription).toHaveAttribute('content', 'A simple Google analyics component for Svelte Runes project.');
+  const metaOgUrl = page.locator('meta[property="og:url"]');
+  await expect(metaOgUrl).toHaveAttribute('content', 'http://localhost:4173/');
+  const metaOgImage = page.locator('meta[property="og:image"]');
+  await expect(metaOgImage).toHaveAttribute(
+    'content',
+    'https://open-graph-vercel.vercel.app/api/runatics'
+  );
+});
 
-// test('Global icons page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/global-icons');
-//   await expect(
-//     page.getByRole('heading', { name: 'Setting Global Icon using setContext' })
-//   ).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny - Global Icons');
-// });
-
-// test('Custom default icons props page has expected h1, meta title', async ({ page }) => {
-//   await page.goto('/guide/custom-icons');
-//   await expect(page.getByRole('heading', { name: 'Custom Default Icons' })).toBeVisible();
-//   await expect(page).toHaveTitle('Svelte Supertiny - Custom Default Icons');
-// });
+test('index page has expected meta twitter', async ({ page }) => {
+  const metaTwitterTitle = page.locator('meta[name="twitter:title"]');
+  await expect(metaTwitterTitle).toHaveAttribute('content', 'Runatics');
+  const metaTwitterDescription = page.locator('meta[name="twitter:description"]');
+  await expect(metaTwitterDescription).toHaveAttribute('content', 'A simple Google analyics component for Svelte Runes project.');
+  const metaTwitterImage = page.locator('meta[name="twitter:image"]');
+  await expect(metaTwitterImage).toHaveAttribute(
+    'content',
+    'https://open-graph-vercel.vercel.app/api/runatics'
+  )
+});

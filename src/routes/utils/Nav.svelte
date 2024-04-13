@@ -12,12 +12,9 @@
     DropdownItem
   } from 'svelte-5-ui-lib';
   import { page } from '$app/stores';
-  import { GithubSolid, random_tailwind_color, DotsHorizontalOutline, XSolid } from 'runes-webkit';
+  import { GithubSolid, DotsHorizontalOutline, XSolid } from 'runes-webkit';
   import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
-
-  // function isIncluded(url: string, allowedUrls: string[]): boolean {
-  //   return allowedUrls.some((allowedUrl) => url.startsWith(allowedUrl));
-  // }
+  import { sineIn } from 'svelte/easing';
 
   type LiType = {
     name: string;
@@ -44,9 +41,6 @@
 
   let currentUrl = $state($page.url.pathname);
   let nav = uiHelpers();
-
-  // let include = $derived(isIncluded(currentUrl, urlsToIncludeSwitcher));
-
   let navStatus = $state(false);
   let toggleNav = nav.toggle;
   let closeNav = nav.close;
@@ -58,15 +52,19 @@
     'sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-sky-950',
     headerClass
   );
+  let transitionParams = {
+    y: 0,
+    duration: 200,
+    easing: sineIn
+  };
   let dropdown = uiHelpers();
 
-  let isOpen = $state(false);
-  let toggle = dropdown.toggle;
-  let close = dropdown.close;
+  let dropdownStatus = $state(false);
+  let closeDropdown = dropdown.close;
 
   $effect(() => {
     navStatus = nav.isOpen;
-    isOpen = dropdown.isOpen;
+    dropdownStatus = dropdown.isOpen;
     currentUrl = $page.url.pathname;
   });
 </script>
@@ -81,18 +79,18 @@
 {/snippet}
 
 <header class={headerCls}>
-  <Navbar {navclass} {toggleNav} {closeNav} {navStatus} breakPoint="lg" fluid div2class={divClass}>
+  <Navbar {navclass} {toggleNav} {closeNav} {navStatus} openMainMenu={false} breakPoint="lg" fluid div2class={divClass}>
     {#snippet brand()}
       <NavBrand
         {siteName}
         spanclass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
       />
-      <div class="ml-auto flex items-center lg:order-1">
+      <div class="ml-auto flex items-center lg:order-1 gap-4">
         <DynamicCodeBlockStyle />
 
-        <DotsHorizontalOutline onclick={toggle} class="ml-4 dark:text-white" size="lg" />
+        <DotsHorizontalOutline onclick={dropdown.toggle} class="ml-4 dark:text-white" size="lg" />
         <div class="relative">
-          <Dropdown {isOpen} divclass="absolute -left-[30px] w-9">
+          <Dropdown dropdownStatus={dropdownStatus} closeDropdown={closeDropdown} transitionParams={transitionParams} divclass="absolute -left-[50px] top-8 w-12 pl-1.5">
             {#if twitterUrl}
               <DropdownItem href={twitterUrl} target="_blank" aclass="p-2 m-0"
                 ><XSolid /></DropdownItem
