@@ -75,8 +75,8 @@ importers:
         specifier: ^0.2.5
         version: 0.2.5(svelte@5.0.0-next.144)
       runes-webkit:
-        specifier: ^0.4.23
-        version: 0.4.23(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)
+        specifier: ^0.7.6
+        version: 0.7.6(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)
       svelte:
         specifier: 5.0.0-next.144
         version: 5.0.0-next.144
@@ -2145,8 +2145,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  runes-webkit@0.4.23:
-    resolution: {integrity: sha512-LtrMVlcfait7HWIh0tDJvwR9A+LPC04vv8BDyefzMLBcelTSNBlfRufz7kdHZDtjI+31VcgOoT2ZjSEwkHmTKA==}
+  runes-webkit@0.7.6:
+    resolution: {integrity: sha512-mjdmfsuCVclfDvohWLOuXXqmSXBumsTwY5uQQuFAjVAT7kJKB0jZgeY+V2+ic1Kgu/nNSf5vdP2Jny5MqwBmmg==}
     engines: {node: '>=18.0.0', npm: '>=7.0.0'}
     peerDependencies:
       '@sveltejs/kit': ^2.5.5
@@ -4882,7 +4882,7 @@ snapshots:
     dependencies:
       svelte: 5.0.0-next.144
 
-  runes-webkit@0.4.23(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144):
+  runes-webkit@0.7.6(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144):
     dependencies:
       '@sveltejs/kit': 2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.144)(vite@5.2.12))(svelte@5.0.0-next.144)(vite@5.2.12)
       svelte: 5.0.0-next.144

@@ -3,7 +3,6 @@
     removeHyphensAndCapitalize,
     SupportBanner,
     TechInfo,
-    pkg,
     HighlightCompo,
     H2
   } from 'runes-webkit';
@@ -13,9 +12,17 @@
     import: 'default',
     eager: true
   });
-  const runeswebkitVersion = __RUNES_WEBKIT_VERSION__;
-  const runesMetaTagsVersion = __RUNES_META_TAG_VERSION__;
-  let newPkg = $state({...pkg, runesMetaTagsVersion, runeswebkitVersion})
+  const pkg = {
+    pkgName: __NAME__,
+    pkgVersion: __VERSION__,
+    repoUrl: __GITHUBURL__,
+    runesMetaTagsVersion: __RUNES_METATAGS_VERSION__,
+    svelteVersion: __SVELTE_VERSION__,
+    svelteKitVersion: __SVELTEKIT_VERSION__,
+    svelte5uilib: __SVELTE_5_UI_LIB_VERSION__,
+    svelteRuneHighlight: __SVELTE_RUNE_HIGHLIGHT_VERSION__,
+    viteVersion: __VITE_VERSION__
+  };
 </script>
 
 <SupportBanner>
@@ -58,4 +65,4 @@
 
 <HighlightCompo code={modules['./md/layout-svelte.md'] as string} />
 
-<TechInfo {...newPkg} />
+<TechInfo {...pkg} />
