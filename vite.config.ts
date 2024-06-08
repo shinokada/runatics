@@ -1,16 +1,20 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import pkg from './package.json' assert { type: 'json' };
-import sveltePackage from 'svelte/package.json' assert { type: 'json' };
-import svelteKitPackage from '@sveltejs/kit/package.json' assert { type: 'json' };
-import vitePackage from 'vite/package.json' assert { type: 'json' };
-import svelterunehighlightPackage from 'svelte-rune-highlight/package.json' assert { type: 'json' };
-import svelte5uilibPackage from 'svelte-5-ui-lib/package.json' assert { type: 'json' };
-import runesmetatagsPackage from 'runes-meta-tags/package.json' assert { type: 'json' };
-import runesWebkit from 'runes-webkit/package.json' assert { type: 'json' };
+import { defineConfig } from 'vitest/config';
+
+import pkg from './package.json' with { type: "json" };
+import sveltePackage from './node_modules/svelte/package.json' with { type: "json" };
+import svelteKitPackage from './node_modules/@sveltejs/kit/package.json' with { type: "json" };
+import vitePackage from './node_modules/vite/package.json' with { type: "json" };
+import svelterunehighlightPackage from './node_modules/svelte-rune-highlight/package.json' with { type: "json" };
+import svelte5uilibPackage from './node_modules/svelte-5-ui-lib/package.json' with { type: "json" };
+import runesmetatagsPackage from './node_modules/runes-meta-tags/package.json' with { type: "json" };
+import runesWebkit from './node_modules/runes-webkit/package.json' with { type: "json" };
 
 export default defineConfig({
   plugins: [sveltekit()],
+  test: {
+		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
   define: {
     __NAME__: JSON.stringify(pkg.name),
     __DESCRIPTION__: JSON.stringify(pkg.description),
