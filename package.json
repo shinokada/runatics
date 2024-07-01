@@ -30,7 +30,7 @@
     "svelte": "^5.0.0"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.6",
+    "@changesets/cli": "^2.27.7",
     "@playwright/test": "^1.45.0",
     "@sveltejs/adapter-auto": "^3.2.2",
     "@sveltejs/kit": "^2.5.18",
@@ -50,7 +50,7 @@
     "publint": "^0.2.8",
     "runes-meta-tags": "^0.3.2",
     "runes-webkit": "^0.7.6",
-    "svelte": "5.0.0-next.167",
+    "svelte": "5.0.0-next.168",
     "svelte-5-ui-lib": "^0.4.13",
     "svelte-check": "^3.8.4",
     "svelte-lib-helpers": "^0.4.6",
