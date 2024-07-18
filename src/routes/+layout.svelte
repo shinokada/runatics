@@ -1,24 +1,24 @@
 <script>
   import '../app.pcss';
   import { page } from '$app/stores';
-  // import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
+  import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
   import { Footer, removeHyphensAndCapitalize } from 'runes-webkit';
   import { Runatics } from '$lib';
   import Nav from './utils/Nav.svelte';
   let { children, data } = $props();
   let currentUrl = $state($page.url.pathname);
   const analyticsId = data.ANALYTICS_ID;
-  // let metaTags = $state(
-  //   $page.data.pageMetaTags
-  //     ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags)
-  //     : data.layoutMetaTags
-  // );
+  let metaTags = $state(
+    $page.data.pageMetaTags
+      ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags)
+      : data.layoutMetaTags
+  );
 
   $effect(() => {
     currentUrl = $page.url.pathname;
-    // metaTags = $page.data.pageMetaTags
-    //   ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags)
-    //   : data.layoutMetaTags;
+    metaTags = $page.data.pageMetaTags
+      ? deepMerge($page.data.layoutMetaTags, $page.data.pageMetaTags)
+      : data.layoutMetaTags;
   });
   // const lis = [
   //   { name: 'Guide', href: '/guide/svelte-4/getting-started' },
@@ -35,7 +35,7 @@
   const githubUrl = `https://github.com/shinokada/${__NAME__}`;
 </script>
 
-
+<RunesMetaTags {...metaTags} />
 <Runatics {analyticsId} />
 
 <Nav {siteName} {twitterUrl} {githubUrl} />
