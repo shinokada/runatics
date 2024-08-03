@@ -69,7 +69,7 @@
   });
 </script>
 
-{#snippet navLi(lis)}
+{#snippet navLi(lis: LiType[])}
   {#each lis as { name, href, icon }}
     {#if icon}
       <svelte:component this={icon} class="mb-3 h-8 w-8" />
@@ -84,7 +84,6 @@
     {toggleNav}
     {closeNav}
     {navStatus}
-    openMainMenu={false}
     breakPoint="lg"
     fluid
     div2Class={divClass}
