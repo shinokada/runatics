@@ -72,7 +72,7 @@
 {#snippet navLi(lis: LiType[])}
   {#each lis as { name, href, icon }}
     {#if icon}
-      <svelte:component this={icon} class="mb-3 h-8 w-8" />
+      <icon class="mb-3 h-8 w-8"></icon>
     {/if}
     <NavLi {href}>{name}</NavLi>
   {/each}
