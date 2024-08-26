@@ -25,7 +25,7 @@
   };
 </script>
 
-<SupportBanner>
+<SupportBanner divClass="mt-16">
   To Keep It Going, Please Show Your Love.<a href="https://ko-fi.com/Z8Z2CHALG" target="_blank"
     ><img
       height="40"
