@@ -9,7 +9,8 @@
     uiHelpers,
     Darkmode,
     Dropdown,
-    DropdownUl, DropdownLi
+    DropdownUl,
+    DropdownLi
   } from 'svelte-5-ui-lib';
   import { page } from '$app/stores';
   import { GithubSolid, DotsHorizontalOutline, XSolid } from 'runes-webkit';
@@ -99,24 +100,27 @@
 
         <DotsHorizontalOutline onclick={dropdown.toggle} class="ml-4 dark:text-white" size="lg" />
         <div class="relative">
-          <Dropdown {dropdownStatus}
-        {closeDropdown}
-        params={transitionParams} class="absolute -left-[50px] top-2 w-12 pl-1.5">
-          <DropdownUl>
-            {#if twitterUrl}
-              <DropdownLi href={twitterUrl} target="_blank" aClass="p-2 m-0"
-                ><XSolid /></DropdownLi
-              >
-            {/if}
-            {#if githubUrl}
-              <DropdownLi href={githubUrl} target="_blank" aClass="p-2 m-0">
-                <GithubSolid />
+          <Dropdown
+            {dropdownStatus}
+            {closeDropdown}
+            params={transitionParams}
+            class="absolute -left-[50px] top-2 w-12 pl-1.5"
+          >
+            <DropdownUl>
+              {#if twitterUrl}
+                <DropdownLi href={twitterUrl} target="_blank" aClass="p-2 m-0"
+                  ><XSolid /></DropdownLi
+                >
+              {/if}
+              {#if githubUrl}
+                <DropdownLi href={githubUrl} target="_blank" aClass="p-2 m-0">
+                  <GithubSolid />
+                </DropdownLi>
+              {/if}
+              <DropdownLi>
+                <Darkmode class="m-0 p-2" />
               </DropdownLi>
-            {/if}
-            <DropdownLi>
-              <Darkmode class="p-2 m-0" />
-            </DropdownLi>
-          </DropdownUl>
+            </DropdownUl>
           </Dropdown>
         </div>
       </div>
