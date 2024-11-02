@@ -6,6 +6,7 @@
   import { Runatics } from '$lib';
   import Nav from './utils/Nav.svelte';
   let { children, data } = $props();
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   let currentUrl = $state($page.url.pathname);
   const analyticsId = data.ANALYTICS_ID;
   let metaTags = $state(

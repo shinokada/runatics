@@ -30,16 +30,8 @@
     headerClass?: string;
     urlsToIncludeSwitcher?: string[];
   }
-  let {
-    lis,
-    siteName,
-    twitterUrl,
-    githubUrl,
-    headerClass,
-    urlsToIncludeSwitcher = [''],
-    ...restProps
-  }: Props = $props();
-
+  let { lis, siteName, twitterUrl, githubUrl, headerClass }: Props = $props();
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   let currentUrl = $state($page.url.pathname);
   let nav = uiHelpers();
   let navStatus = $state(false);
