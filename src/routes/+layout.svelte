@@ -35,12 +35,14 @@
   const siteName = removeHyphensAndCapitalize(__NAME__);
   const twitterUrl = 'https://twitter.com/shinokada';
   const githubUrl = `https://github.com/shinokada/${__NAME__}`;
+  const blueskyUrl = 'https://bsky.app/profile/shinichiokada.bsky.social';
+
 </script>
 
 <RunesMetaTags {...metaTags} />
 <Runatics {analyticsId} />
 
-<Nav {siteName} {twitterUrl} {githubUrl} />
+<Nav {siteName} {twitterUrl} {githubUrl} {blueskyUrl}/>
 <div class="mx-auto max-w-4xl lg:flex">
   <div class="relative h-full w-full overflow-y-auto px-8">
     {@render children()}

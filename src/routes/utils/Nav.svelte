@@ -13,7 +13,7 @@
     DropdownLi
   } from 'svelte-5-ui-lib';
   import { page } from '$app/stores';
-  import { GithubSolid, DotsHorizontalOutline, XSolid } from 'runes-webkit';
+  import { GithubSolid, DotsHorizontalOutline, XSolid, Bluesky } from 'runes-webkit';
   import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
   import { sineIn } from 'svelte/easing';
 
@@ -27,10 +27,11 @@
     siteName: string;
     twitterUrl?: string;
     githubUrl?: string;
+    blueskyUrl?: string;
     headerClass?: string;
     urlsToIncludeSwitcher?: string[];
   }
-  let { lis, siteName, twitterUrl, githubUrl, headerClass }: Props = $props();
+  let { lis, siteName, twitterUrl, githubUrl, blueskyUrl, headerClass }: Props = $props();
   /* eslint-disable @typescript-eslint/no-unused-vars */
   let currentUrl = $state($page.url.pathname);
   let nav = uiHelpers();
@@ -91,14 +92,20 @@
         <DynamicCodeBlockStyle />
 
         <DotsHorizontalOutline onclick={dropdown.toggle} class="ml-4 dark:text-white" size="lg" />
+        <Darkmode class="m-0 p-2" />
         <div class="relative">
           <Dropdown
             {dropdownStatus}
             {closeDropdown}
             params={transitionParams}
-            class="absolute -left-[50px] top-2 w-12 pl-1.5"
+            class="absolute -left-[102px] top-2 w-12 pl-1.5"
           >
-            <DropdownUl>
+            <DropdownUl class="py-0">
+              {#if blueskyUrl}
+                <DropdownLi href={blueskyUrl} target="_blank" aClass="p-0.5 m-0">
+                  <Bluesky size="30" />
+                </DropdownLi>
+              {/if}
               {#if twitterUrl}
                 <DropdownLi href={twitterUrl} target="_blank" aClass="p-2 m-0"
                   ><XSolid /></DropdownLi
@@ -109,9 +116,6 @@
                   <GithubSolid />
                 </DropdownLi>
               {/if}
-              <DropdownLi>
-                <Darkmode class="m-0 p-2" />
-              </DropdownLi>
             </DropdownUl>
           </Dropdown>
         </div>
