@@ -17,6 +17,11 @@
   import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
   import { sineIn } from 'svelte/easing';
 
+  let activeUrl = $state($page.url.pathname);
+  $effect(() => {
+    activeUrl = $page.url.pathname;
+  });
+
   type LiType = {
     name: string;
     href: string;
@@ -122,7 +127,7 @@
       </div>
     {/snippet}
     {#if lis}
-      <NavUl class={ulclass}>
+      <NavUl {activeUrl} class={ulclass}>
         {@render navLi(lis)}
       </NavUl>
     {/if}
