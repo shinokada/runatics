@@ -1,7 +1,0 @@
-/*!
-  Theme: Silk Light
-  Author: Gabriel Fontes (https://github.com/Misterio77)
-  License: ~ MIT (or more permissive) [via base16-schemes-source]
-  Maintainer: @highlightjs/core-team
-  Version: 2021.09.0
-*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#385156;background:#e9f1ef}.hljs::-moz-selection,.hljs ::-moz-selection{background-color:#90b7b6;color:#385156}.hljs::selection,.hljs ::selection{background-color:#90b7b6;color:#385156}.hljs-comment{color:#5c787b}.hljs-tag{color:#4b5b5f}.hljs-subst,.hljs-punctuation,.hljs-operator{color:#385156}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-variable,.hljs-template-variable,.hljs-selector-tag,.hljs-name,.hljs-deletion{color:#cf432e}.hljs-symbol,.hljs-number,.hljs-link,.hljs-attr,.hljs-variable.constant_,.hljs-literal{color:#d27f46}.hljs-title,.hljs-class .hljs-title,.hljs-title.class_{color:#cfad25}.hljs-strong{font-weight:700;color:#cfad25}.hljs-code,.hljs-addition,.hljs-title.class_.inherited__,.hljs-string{color:#6ca38c}.hljs-built_in,.hljs-doctag,.hljs-quote,.hljs-keyword.hljs-atrule,.hljs-regexp{color:#329ca2}.hljs-function .hljs-title,.hljs-attribute,.ruby .hljs-property,.hljs-title.function_,.hljs-section{color:#39aac9}.hljs-type,.hljs-template-tag,.diff .hljs-meta,.hljs-keyword{color:#6e6582}.hljs-emphasis{color:#6e6582;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#865369}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}
