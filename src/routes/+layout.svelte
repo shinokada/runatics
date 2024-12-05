@@ -35,7 +35,7 @@
   const siteName = removeHyphensAndCapitalize(__NAME__);
   const twitterUrl = 'https://twitter.com/shinokada';
   const githubUrl = `https://github.com/shinokada/${__NAME__}`;
-  const blueskyUrl = 'https://bsky.app/profile/shinichiokada.bsky.social';
+  const blueskyUrl = 'https://bsky.app/profile/codewithshin.com';
 </script>
 
 <RunesMetaTags {...metaTags} />
