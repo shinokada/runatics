@@ -54,7 +54,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "publint": "^0.2.12",
     "runes-meta-tags": "^0.4.2",
-    "runes-webkit": "^0.9.47",
+    "runes-webkit": "^0.9.48",
     "svelte": "5.6.2",
     "svelte-check": "^4.1.0",
     "svelte-lib-helpers": "^0.4.16",
