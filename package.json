@@ -55,7 +55,7 @@
     "publint": "^0.2.12",
     "runes-meta-tags": "^0.4.2",
     "runes-webkit": "^0.9.48",
-    "svelte": "5.8.1",
+    "svelte": "5.9.0",
     "svelte-check": "^4.1.1",
     "svelte-lib-helpers": "^0.4.16",
     "svelte-rune-highlight": "^0.5.13",
