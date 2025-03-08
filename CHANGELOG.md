@@ -1,5 +1,11 @@
 # runatics
 
+## 0.1.4
+
+### Patch Changes
+
+- fix: update svelte and tailwindcss 4
+
 ## 0.1.3
 
 ### Patch Changes

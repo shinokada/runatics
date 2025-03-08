@@ -15,18 +15,18 @@ import runesWebkit from './node_modules/runes-webkit/package.json' with { type: 
 export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	define: {
-    __NAME__: JSON.stringify(pkg.name),
-    __DESCRIPTION__: JSON.stringify(pkg.description),
-    __VERSION__: JSON.stringify(pkg.version),
-    __GITHUBURL__: JSON.stringify(pkg.repository.url),
-    __RUNES_METATAGS_VERSION__: JSON.stringify(runesmetatagsPackage.version),
-    __RUNES_WEBKIT_VERSION__: JSON.stringify(runesWebkit.version),
-    __SVELTE_VERSION__: JSON.stringify(sveltePackage.version),
-    __SVELTEKIT_VERSION__: JSON.stringify(svelteKitPackage.version),
-    __SVELTE_RUNE_HIGHLIGHT_VERSION__: JSON.stringify(svelterunehighlightPackage.version),
-    __FLOWBITE_SVELTE_VERSION__: JSON.stringify(flowbiteSveltePackage.version),
-    __VITE_VERSION__: JSON.stringify(vitePackage.version)
-  },
+		__NAME__: JSON.stringify(pkg.name),
+		__DESCRIPTION__: JSON.stringify(pkg.description),
+		__VERSION__: JSON.stringify(pkg.version),
+		__GITHUBURL__: JSON.stringify(pkg.repository.url),
+		__RUNES_METATAGS_VERSION__: JSON.stringify(runesmetatagsPackage.version),
+		__RUNES_WEBKIT_VERSION__: JSON.stringify(runesWebkit.version),
+		__SVELTE_VERSION__: JSON.stringify(sveltePackage.version),
+		__SVELTEKIT_VERSION__: JSON.stringify(svelteKitPackage.version),
+		__SVELTE_RUNE_HIGHLIGHT_VERSION__: JSON.stringify(svelterunehighlightPackage.version),
+		__FLOWBITE_SVELTE_VERSION__: JSON.stringify(flowbiteSveltePackage.version),
+		__VITE_VERSION__: JSON.stringify(vitePackage.version)
+	},
 	test: {
 		workspace: [
 			{
