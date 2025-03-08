@@ -1,5 +1,5 @@
 <script>
-  import '../app.pcss';
+  import '../app.css';
   import { page } from '$app/stores';
   import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
   import { Footer, removeHyphensAndCapitalize } from 'runes-webkit';
@@ -45,6 +45,6 @@
 <div class="mx-auto max-w-4xl lg:flex">
   <div class="relative h-full w-full overflow-y-auto px-8">
     {@render children()}
-    <Footer {brand} ulClass="dark_bg_theme" />
+    <Footer {brand} ulClass="dark:bg-stone-900" />
   </div>
 </div>

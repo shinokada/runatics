@@ -36,7 +36,7 @@
 </script>
 
 <select
-  class="w-32 border border-gray-200 p-1 text-gray-800 dark:text-gray-800 md:w-36"
+  class="w-32 border border-gray-200 p-1 text-gray-800 dark:text-gray-800 dark:bg-white md:w-36"
   bind:value={selected}
 >
   {#each styles as theme}
