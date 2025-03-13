@@ -11,7 +11,7 @@
 		Dropdown,
 		DropdownUl,
 		DropdownLi
-	} from 'flowbite-svelte';
+	} from 'svelte-5-ui-lib';
 	import { page } from '$app/stores';
 	import { GithubSolid, DotsHorizontalOutline, XSolid, Bluesky } from 'runes-webkit';
 	import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';

@@ -42,9 +42,9 @@
 <Runatics {analyticsId} />
 
 <Nav {siteName} {twitterUrl} {githubUrl} {blueskyUrl} />
-<div class="mx-auto max-w-4xl lg:flex">
+<div class="mx-auto max-w-4xl lg:flex mb-16">
 	<div class="relative h-full w-full overflow-y-auto px-8">
 		{@render children()}
-		<Footer {brand} ulClass="dark:bg-stone-900" />
 	</div>
 </div>
+<Footer {brand} ulClass="dark:bg-stone-900" />
