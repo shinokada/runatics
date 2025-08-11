@@ -7,19 +7,18 @@
 		NavBrand,
 		NavUl,
 		uiHelpers,
-		Darkmode,
+		DarkMode,
 		Dropdown,
-		DropdownUl,
-		DropdownLi
-	} from 'svelte-5-ui-lib';
-	import { page } from '$app/stores';
+		DropdownItem
+	} from 'flowbite-svelte';
+	import { page } from '$app/state';
 	import { GithubSolid, DotsHorizontalOutline, XSolid, Bluesky } from 'runes-webkit';
 	import DynamicCodeBlockStyle from './DynamicCodeBlockStyle.svelte';
 	import { sineIn } from 'svelte/easing';
 
-	let activeUrl = $state($page.url.pathname);
+	let activeUrl = $state(page.url.pathname);
 	$effect(() => {
-		activeUrl = $page.url.pathname;
+		activeUrl = page.url.pathname;
 	});
 
 	type LiType = {
@@ -29,16 +28,12 @@
 	};
 	interface Props {
 		lis?: LiType[];
-		siteName: string;
-		twitterUrl?: string;
-		githubUrl?: string;
-		blueskyUrl?: string;
 		headerClass?: string;
 		urlsToIncludeSwitcher?: string[];
 	}
-	let { lis, siteName, twitterUrl, githubUrl, blueskyUrl, headerClass }: Props = $props();
+	let { lis, headerClass }: Props = $props();
 	/* eslint-disable @typescript-eslint/no-unused-vars */
-	let currentUrl = $state($page.url.pathname);
+	let currentUrl = $state(page.url.pathname);
 	let nav = uiHelpers();
 	let navStatus = $state(false);
 	let toggleNav = nav.toggle;
@@ -64,75 +59,48 @@
 	$effect(() => {
 		navStatus = nav.isOpen;
 		dropdownStatus = dropdown.isOpen;
-		currentUrl = $page.url.pathname;
+		currentUrl = page.url.pathname;
 	});
+
+	const githubUrl = `https://github.com/shinokada/${__NAME__}`;
+	const twitterUrl = 'https://twitter.com/shinokada';
+	const blueskyUrl = 'https://bsky.app/profile/codewithshin.com';
+	let activeClass = 'p-2 text-base hover:text-gray-600';
+	let nonActiveClass = 'p-2 text-base hover:text-gray-600';
 </script>
 
-{#snippet navLi(lis: LiType[])}
-	{#each lis as { name, href, icon }}
-		{#if icon}
-			<icon class="mb-3 h-8 w-8"></icon>
-		{/if}
-		<NavLi {href}>{name}</NavLi>
-	{/each}
-{/snippet}
-
-<header class={headerCls}>
-	<Navbar
-		{navClass}
-		{toggleNav}
-		{closeNav}
-		{navStatus}
-		breakPoint="lg"
-		fluid
-		hamburgerMenu={false}
-		div2Class={divClass}
-	>
-		{#snippet brand()}
-			<NavBrand
-				{siteName}
-				spanClass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
-			/>
-			<div class="ml-auto flex items-center gap-4 lg:order-1">
-				<DynamicCodeBlockStyle />
-
-				<DotsHorizontalOutline onclick={dropdown.toggle} class="ml-4 dark:text-white" size="lg" />
-				<Darkmode class="m-0 p-2" />
-				<div class="relative">
-					<Dropdown
-						{dropdownStatus}
-						{closeDropdown}
-						params={transitionParams}
-						class="absolute top-2 -left-[102px] w-12 pl-1.5"
-					>
-						<DropdownUl class="py-0">
-							{#if blueskyUrl}
-								<DropdownLi href={blueskyUrl} target="_blank" aClass="p-0.5 m-0">
-									<Bluesky size="30" />
-								</DropdownLi>
-							{/if}
-							{#if twitterUrl}
-								<DropdownLi href={twitterUrl} target="_blank" aClass="p-2 m-0"
-									><XSolid /></DropdownLi
-								>
-							{/if}
-							{#if githubUrl}
-								<DropdownLi href={githubUrl} target="_blank" aClass="p-2 m-0">
-									<GithubSolid />
-								</DropdownLi>
-							{/if}
-						</DropdownUl>
-					</Dropdown>
-				</div>
-			</div>
-		{/snippet}
-		{#if lis}
-			<NavUl {activeUrl} class={ulclass}>
-				{@render navLi(lis)}
-			</NavUl>
-		{/if}
-	</Navbar>
-</header>
+<Navbar
+	fluid
+	class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-stone-950"
+	navContainerClass="lg:justify-between"
+>
+	<NavBrand href="/">
+		<span
+			class="text-primary-900 dark:text-primary-500 self-center text-2xl lg:text-3xl font-semibold whitespace-nowrap"
+			>Runatics</span
+		>
+	</NavBrand>
+	<div class="flex justify-end">
+		<DynamicCodeBlockStyle />
+		<DotsHorizontalOutline class="mt-1.5 mr-4 ml-6 dark:text-white" size="lg" />
+		<Dropdown simple class="p-1">
+			{#if blueskyUrl}
+				<DropdownItem href={blueskyUrl} target="_blank" class="m-0 p-0.5">
+					<Bluesky size="30" />
+				</DropdownItem>
+			{/if}
+			{#if twitterUrl}
+				<DropdownItem href={twitterUrl} target="_blank" class="m-0 p-2"><XSolid /></DropdownItem>
+			{/if}
+			{#if githubUrl}
+				<DropdownItem href={githubUrl} target="_blank" class="m-0 p-2">
+					<GithubSolid />
+				</DropdownItem>
+			{/if}
+		</Dropdown>
+		<DarkMode class="m-0 p-2" />
+	</div>
+</Navbar>
 
 <!--
 @component

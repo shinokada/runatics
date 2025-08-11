@@ -91,7 +91,6 @@
 		"runes-meta-tags": "^0.4.4",
 		"runes-webkit": "^0.10.3",
 		"svelte": "^5.38.0",
-		"svelte-5-ui-lib": "^0.12.6",
 		"svelte-check": "^4.3.1",
 		"svelte-lib-helpers": "^0.4.30",
 		"svelte-rune-highlight": "^0.7.0",
