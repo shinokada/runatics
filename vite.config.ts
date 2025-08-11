@@ -12,46 +12,46 @@ import runesmetatagsPackage from './node_modules/runes-meta-tags/package.json' w
 import runesWebkit from './node_modules/runes-webkit/package.json' with { type: 'json' };
 
 export default defineConfig({
-	plugins: [sveltekit(), tailwindcss()],
-	define: {
-		__NAME__: JSON.stringify(pkg.name),
-		__DESCRIPTION__: JSON.stringify(pkg.description),
-		__VERSION__: JSON.stringify(pkg.version),
-		__GITHUBURL__: JSON.stringify(pkg.repository.url),
-		__RUNES_METATAGS_VERSION__: JSON.stringify(runesmetatagsPackage.version),
-		__RUNES_WEBKIT_VERSION__: JSON.stringify(runesWebkit.version),
-		__SVELTE_VERSION__: JSON.stringify(sveltePackage.version),
-		__SVELTEKIT_VERSION__: JSON.stringify(svelteKitPackage.version),
-		__SVELTE_RUNE_HIGHLIGHT_VERSION__: JSON.stringify(svelterunehighlightPackage.version),
-		__VITE_VERSION__: JSON.stringify(vitePackage.version)
-	},
-	test: {
-		expect: { requireAssertions: true },
-		projects: [
-			{
-				extends: './vite.config.ts',
-				test: {
-					name: 'client',
-					environment: 'browser',
-					browser: {
-						enabled: true,
-						provider: 'playwright',
-						instances: [{ browser: 'chromium' }]
-					},
-					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
-					exclude: ['src/lib/server/**'],
-					setupFiles: ['./vitest-setup-client.ts']
-				}
-			},
-			{
-				extends: './vite.config.ts',
-				test: {
-					name: 'server',
-					environment: 'node',
-					include: ['src/**/*.{test,spec}.{js,ts}'],
-					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
-				}
-			}
-		]
-	}
+  plugins: [sveltekit(), tailwindcss()],
+  define: {
+    __NAME__: JSON.stringify(pkg.name),
+    __DESCRIPTION__: JSON.stringify(pkg.description),
+    __VERSION__: JSON.stringify(pkg.version),
+    __GITHUBURL__: JSON.stringify(pkg.repository.url),
+    __RUNES_METATAGS_VERSION__: JSON.stringify(runesmetatagsPackage.version),
+    __RUNES_WEBKIT_VERSION__: JSON.stringify(runesWebkit.version),
+    __SVELTE_VERSION__: JSON.stringify(sveltePackage.version),
+    __SVELTEKIT_VERSION__: JSON.stringify(svelteKitPackage.version),
+    __SVELTE_RUNE_HIGHLIGHT_VERSION__: JSON.stringify(svelterunehighlightPackage.version),
+    __VITE_VERSION__: JSON.stringify(vitePackage.version)
+  },
+  test: {
+    expect: { requireAssertions: true },
+    projects: [
+      {
+        extends: './vite.config.ts',
+        test: {
+          name: 'client',
+          environment: 'browser',
+          browser: {
+            enabled: true,
+            provider: 'playwright',
+            instances: [{ browser: 'chromium' }]
+          },
+          include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
+          exclude: ['src/lib/server/**'],
+          setupFiles: ['./vitest-setup-client.ts']
+        }
+      },
+      {
+        extends: './vite.config.ts',
+        test: {
+          name: 'server',
+          environment: 'node',
+          include: ['src/**/*.{test,spec}.{js,ts}'],
+          exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+        }
+      }
+    ]
+  }
 });
