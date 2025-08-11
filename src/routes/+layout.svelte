@@ -2,7 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/state';
 	import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
-	import { Footer, removeHyphensAndCapitalize } from 'runes-webkit';
+	import { Footer } from 'runes-webkit';
 	import { Runatics } from '$lib';
 	import Nav from './utils/Nav.svelte';
 	let { children, data } = $props();
@@ -21,18 +21,11 @@
 			? deepMerge(page.data.layoutMetaTags, page.data.pageMetaTags)
 			: data.layoutMetaTags;
 	});
-	// const lis = [
-	//   { name: 'Guide', href: '/guide/svelte-4/getting-started' },
-	//   { name: 'Icons', href: '/icons' },
-	//   { name: 'Icon sets', href: 'https://svelte-svg-icons.codewithshin.com/' }
-	// ];
+
 	const brand = {
 		name: 'codewithshin.com',
 		href: 'https://codewithshin.com'
 	};
-	// const urlsToIncludeSwitcherAndSidebar = ['/guide/', '/guide2/', '/how-to-use'];
-	/*eslint no-undef: "off"*/
-
 </script>
 
 <RunesMetaTags {...metaTags} />
