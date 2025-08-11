@@ -28,15 +28,18 @@ export default defineConfig({
 		__VITE_VERSION__: JSON.stringify(vitePackage.version)
 	},
 	test: {
-		workspace: [
+		expect: { requireAssertions: true },
+		projects: [
 			{
 				extends: './vite.config.ts',
-				plugins: [svelteTesting()],
-
 				test: {
 					name: 'client',
-					environment: 'jsdom',
-					clearMocks: true,
+					environment: 'browser',
+					browser: {
+						enabled: true,
+						provider: 'playwright',
+						instances: [{ browser: 'chromium' }]
+					},
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**'],
 					setupFiles: ['./vitest-setup-client.ts']
@@ -44,7 +47,6 @@ export default defineConfig({
 			},
 			{
 				extends: './vite.config.ts',
-
 				test: {
 					name: 'server',
 					environment: 'node',

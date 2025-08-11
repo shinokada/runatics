@@ -26,7 +26,7 @@
 	};
 </script>
 
-<SupportBanner class="mt-8">
+<SupportBanner class="mt-8 relative">
 	To Keep It Going, Please Show Your Love.<a
 		href="https://ko-fi.com/Z8Z2CHALG"
 		target="_blank"

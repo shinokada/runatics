@@ -9,7 +9,7 @@ export const load = ({ url }) => {
 		twitter: {
 			card: 'summary_large_image',
 			site: '@shinokada',
-			handle: '@shinokada',
+			creator: '@shinokada',
 			title: 'Runatics',
 			description: 'A simple Google analyics component for Svelte Runes project.',
 			image: 'https://open-graph-vercel.vercel.app/api/runatics',
