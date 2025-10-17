@@ -10,7 +10,7 @@
 
 <Navbar
   fluid
-  class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-stone-950"
+  class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-stone-900"
   navContainerClass="lg:justify-between"
 >
   <NavBrand href="/">

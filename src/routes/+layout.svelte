@@ -37,4 +37,4 @@
     {@render children()}
   </div>
 </div>
-<Footer {brand} ulClass="dark:bg-stone-900" />
+<Footer {brand} footerClass="dark:bg-stone-900" />
