@@ -1,11 +1,6 @@
 <script lang="ts">
-  import {
-    removeHyphensAndCapitalize,
-    SupportBanner,
-    TechInfo,
-    HighlightCompo,
-    H2
-  } from 'runes-webkit';
+  import { removeHyphensAndCapitalize, SupportBanner, TechInfo, H2 } from 'runes-webkit';
+  import { HighlightCompo } from 'svelte-rune-highlight';
 
   const modules = import.meta.glob('./md/*.md', {
     query: '?raw',

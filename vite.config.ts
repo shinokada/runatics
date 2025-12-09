@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import { svelteTesting } from '@testing-library/svelte/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 import pkg from './package.json' with { type: 'json' };
 import sveltePackage from './node_modules/svelte/package.json' with { type: 'json' };
@@ -30,14 +30,12 @@ export default defineConfig({
     projects: [
       {
         extends: './vite.config.ts',
+        plugins: [svelteTesting()],
+
         test: {
           name: 'client',
-          environment: 'browser',
-          browser: {
-            enabled: true,
-            provider: 'playwright',
-            instances: [{ browser: 'chromium' }]
-          },
+          environment: 'jsdom',
+          clearMocks: true,
           include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
           exclude: ['src/lib/server/**'],
           setupFiles: ['./vitest-setup-client.ts']
@@ -45,6 +43,7 @@ export default defineConfig({
       },
       {
         extends: './vite.config.ts',
+
         test: {
           name: 'server',
           environment: 'node',

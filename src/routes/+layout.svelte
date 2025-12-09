@@ -8,8 +8,8 @@
   let { children, data } = $props();
   /* eslint-disable @typescript-eslint/no-unused-vars */
   let currentUrl = $state(page.url.pathname);
-  const analyticsId = data.ANALYTICS_ID;
-  let metaTags = $state(
+  const analyticsId = $derived(data.ANALYTICS_ID);
+  let metaTags = $derived(
     page.data.pageMetaTags
       ? deepMerge(page.data.layoutMetaTags, page.data.pageMetaTags)
       : data.layoutMetaTags
