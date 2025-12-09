@@ -1,5 +1,19 @@
 # runatics
 
+## 0.2.0
+
+### Minor Changes
+
+- feat: improvements
+  - SSR Safety - Checks for window existence before running browser-specific code
+  - Prevent Duplicate Initialization - Checks if gtag already exists before initializing
+  - Proper Cleanup - Returns cleanup function from $effect to remove scripts when component unmounts
+  - Debug Mode - Added optional debug prop for development logging
+  - Better Error Handling - Console warnings instead of rendering error UI by default (UI shown only in debug mode)
+  - Type Safety - Added global type declarations for window.gtag and window.dataLayer
+  - Better Documentation - Updated component documentation with proper prop types and usage examples
+  - Development-Friendly - Warns developers about missing IDs without breaking production builds
+
 ## 0.1.4
 
 ### Patch Changes
