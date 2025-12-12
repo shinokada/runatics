@@ -17,7 +17,7 @@ test('index page has expected meta description', async ({ page }) => {
   const metaDescription = page.locator('meta[name="description"]');
   await expect(metaDescription).toHaveAttribute(
     'content',
-    'A simple Google analyics component for Svelte Runes project.'
+    'A simple Google analyticscomponent for Svelte Runes project.'
   );
 });
 
@@ -32,7 +32,7 @@ test('index page has expected meta og', async ({ page }) => {
   const metaOgDescription = page.locator('meta[property="og:description"]');
   await expect(metaOgDescription).toHaveAttribute(
     'content',
-    'A simple Google analyics component for Svelte Runes project.'
+    'A simple Google analyticscomponent for Svelte Runes project.'
   );
   const metaOgUrl = page.locator('meta[property="og:url"]');
   await expect(metaOgUrl).toHaveAttribute('content', 'http://localhost:4173/');
@@ -49,7 +49,7 @@ test('index page has expected meta twitter', async ({ page }) => {
   const metaTwitterDescription = page.locator('meta[name="twitter:description"]');
   await expect(metaTwitterDescription).toHaveAttribute(
     'content',
-    'A simple Google analyics component for Svelte Runes project.'
+    'A simple Google analyticscomponent for Svelte Runes project.'
   );
   const metaTwitterImage = page.locator('meta[name="twitter:image"]');
   await expect(metaTwitterImage).toHaveAttribute(

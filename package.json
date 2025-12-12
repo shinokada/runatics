@@ -2,7 +2,7 @@
   "name": "runatics",
   "version": "0.2.0",
   "main": "dist/index.js",
-  "description": "A simple Google analyics component for Svelte Runes project",
+  "description": "A simple Google analyticscomponent for Svelte Runes project",
   "author": {
     "name": "Shinichi Okada",
     "email": "connect@codewithshin.com",
