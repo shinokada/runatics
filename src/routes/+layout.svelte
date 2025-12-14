@@ -1,13 +1,13 @@
 <script>
   import '../app.css';
   import { page } from '$app/state';
-  import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
+  import { MetaTags, deepMerge } from 'runes-meta-tags';
   import { Footer } from 'runes-webkit';
   import { Runatics } from '$lib';
   import Nav from './utils/Nav.svelte';
+
   let { children, data } = $props();
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  let currentUrl = $state(page.url.pathname);
+
   const analyticsId = $derived(data.ANALYTICS_ID);
   let metaTags = $derived(
     page.data.pageMetaTags
@@ -15,20 +15,13 @@
       : data.layoutMetaTags
   );
 
-  $effect(() => {
-    currentUrl = page.url.pathname;
-    metaTags = page.data.pageMetaTags
-      ? deepMerge(page.data.layoutMetaTags, page.data.pageMetaTags)
-      : data.layoutMetaTags;
-  });
-
   const brand = {
     name: 'codewithshin.com',
     href: 'https://codewithshin.com'
   };
 </script>
 
-<RunesMetaTags {...metaTags} />
+<MetaTags {...metaTags} />
 <Runatics {analyticsId} />
 
 <Nav />
