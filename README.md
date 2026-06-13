@@ -107,7 +107,7 @@ The `__runaticsInitialized` guard ensures `gtag('config', ...)` is called exactl
 
 IDs must match `G-[A-Z0-9]+`. Examples of valid IDs:
 
-```
+```text
 G-XXXXXXXXXX
 G-1234567890
 G-ABC123DEF4
