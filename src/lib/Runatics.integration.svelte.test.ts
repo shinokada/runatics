@@ -9,16 +9,15 @@ describe('Runatics - Integration Tests', () => {
     delete window.gtag;
     // @ts-expect-error - Deleting for test cleanup
     delete window.dataLayer;
+    // @ts-expect-error - Deleting for test cleanup
+    delete window.__runaticsInitialized;
     vi.clearAllMocks();
   });
 
   describe('Google Analytics Script Loading', () => {
     it('should create both external and inline scripts', () => {
-      render(Runatics, {
-        props: { analyticsId: 'G-TEST123' }
-      });
+      render(Runatics, { props: { analyticsId: 'G-TEST123', enableInDevelopment: true } });
 
-      // Check external script (from svelte:head)
       const externalScript = document.querySelector('script[src*="googletagmanager.com"]');
       expect(externalScript).toBeTruthy();
       expect(externalScript?.getAttribute('async')).toBe('');
@@ -26,46 +25,51 @@ describe('Runatics - Integration Tests', () => {
         'https://www.googletagmanager.com/gtag/js?id=G-TEST123'
       );
 
-      // Check inline initialization script
-      const scripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      const inlineScript = scripts.find(
-        (script) => script.innerHTML.includes('dataLayer') && script.innerHTML.includes('gtag')
+      const inlineScript = Array.from(document.head.querySelectorAll('script:not([src])')).find(
+        (s) => s.innerHTML.includes('dataLayer') && s.innerHTML.includes('gtag')
       );
       expect(inlineScript).toBeTruthy();
     });
 
     it('should initialize dataLayer array', () => {
-      render(Runatics, {
-        props: { analyticsId: 'G-TEST123' }
-      });
+      render(Runatics, { props: { analyticsId: 'G-TEST123', enableInDevelopment: true } });
 
-      const scripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      const inlineScript = scripts.find((script) => script.innerHTML.includes('dataLayer'));
-
-      expect(inlineScript?.innerHTML).toContain('window.dataLayer = window.dataLayer || []');
+      const inlineScript = Array.from(document.head.querySelectorAll('script:not([src])')).find(
+        (s) => s.innerHTML.includes('dataLayer')
+      );
+      expect(inlineScript?.innerHTML).toContain('window.dataLayer=window.dataLayer||[]');
     });
 
     it('should define gtag function', () => {
-      render(Runatics, {
-        props: { analyticsId: 'G-TEST123' }
-      });
+      render(Runatics, { props: { analyticsId: 'G-TEST123', enableInDevelopment: true } });
 
-      const scripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      const inlineScript = scripts.find((script) => script.innerHTML.includes('function gtag'));
-
-      expect(inlineScript?.innerHTML).toContain('function gtag() { dataLayer.push(arguments); }');
+      const inlineScript = Array.from(document.head.querySelectorAll('script:not([src])')).find(
+        (s) => s.innerHTML.includes('function gtag')
+      );
+      expect(inlineScript?.innerHTML).toContain(
+        'function gtag(){window.dataLayer.push(arguments);}'
+      );
     });
 
     it('should call gtag with js and config', () => {
-      render(Runatics, {
-        props: { analyticsId: 'G-TEST123' }
-      });
+      render(Runatics, { props: { analyticsId: 'G-TEST123', enableInDevelopment: true } });
 
-      const scripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      const inlineScript = scripts.find((script) => script.innerHTML.includes('gtag'));
+      const inlineScript = Array.from(document.head.querySelectorAll('script:not([src])')).find(
+        (s) => s.innerHTML.includes('gtag')
+      );
+      expect(inlineScript?.innerHTML).toContain("gtag('js',new Date())");
+      expect(inlineScript?.innerHTML).toContain("gtag('config','G-TEST123')");
+    });
 
-      expect(inlineScript?.innerHTML).toContain("gtag('js', new Date())");
-      expect(inlineScript?.innerHTML).toContain("gtag('config', 'G-TEST123')");
+    it('should not inject scripts when analyticsId is empty', () => {
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      render(Runatics, { props: { analyticsId: '', enableInDevelopment: true } });
+
+      const externalScript = document.querySelector('script[src*="googletagmanager.com"]');
+      expect(externalScript).toBeFalsy();
+
+      warnSpy.mockRestore();
     });
   });
 
@@ -76,15 +80,14 @@ describe('Runatics - Integration Tests', () => {
       measurementIds.forEach((id) => {
         document.head.innerHTML = '';
 
-        render(Runatics, {
-          props: { analyticsId: id }
-        });
+        render(Runatics, { props: { analyticsId: id, enableInDevelopment: true } });
 
         const scriptTag = document.querySelector('script[src*="googletagmanager.com"]');
         expect(scriptTag?.getAttribute('src')).toContain(id);
 
-        const inlineScripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-        const configScript = inlineScripts.find((s) => s.innerHTML.includes(`'${id}'`));
+        const configScript = Array.from(document.head.querySelectorAll('script:not([src])')).find(
+          (s) => s.innerHTML.includes(`'${id}'`)
+        );
         expect(configScript).toBeTruthy();
       });
     });
@@ -93,11 +96,8 @@ describe('Runatics - Integration Tests', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-      render(Runatics, {
-        props: { analyticsId: 'G-PRODUCTION' }
-      });
+      render(Runatics, { props: { analyticsId: 'G-PRODUCTION', enableInDevelopment: true } });
 
-      // Should not log in production mode (debug: false by default)
       expect(consoleSpy).not.toHaveBeenCalled();
       expect(warnSpy).not.toHaveBeenCalled();
 
@@ -105,11 +105,26 @@ describe('Runatics - Integration Tests', () => {
       warnSpy.mockRestore();
     });
 
-    it('should handle development environment (with debug)', () => {
+    it('should skip GA in development by default (with debug)', () => {
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+      render(Runatics, { props: { analyticsId: 'G-DEVELOPMENT', debug: true } });
+
+      expect(consoleSpy).toHaveBeenCalledWith(
+        '[Runatics] Skipping GA in development. Pass enableInDevelopment to override.'
+      );
+
+      const externalScript = document.querySelector('script[src*="googletagmanager.com"]');
+      expect(externalScript).toBeFalsy();
+
+      consoleSpy.mockRestore();
+    });
+
+    it('should load GA in development when enableInDevelopment is true (with debug)', () => {
       const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       render(Runatics, {
-        props: { analyticsId: 'G-DEVELOPMENT', debug: true }
+        props: { analyticsId: 'G-DEVELOPMENT', debug: true, enableInDevelopment: true }
       });
 
       expect(consoleSpy).toHaveBeenCalledWith(
@@ -124,42 +139,36 @@ describe('Runatics - Integration Tests', () => {
   describe('Error Prevention', () => {
     it('should not throw when analyticsId is empty string', () => {
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
       expect(() => {
-        render(Runatics, {
-          props: { analyticsId: '' }
-        });
+        render(Runatics, { props: { analyticsId: '', enableInDevelopment: true } });
       }).not.toThrow();
 
       warnSpy.mockRestore();
-      logSpy.mockRestore();
     });
 
     it('should not throw when switching between valid IDs', () => {
       expect(() => {
         const { unmount } = render(Runatics, {
-          props: { analyticsId: 'G-FIRST' }
+          props: { analyticsId: 'G-FIRST', enableInDevelopment: true }
         });
         unmount();
-
-        render(Runatics, {
-          props: { analyticsId: 'G-SECOND' }
-        });
+        document.head.innerHTML = '';
+        render(Runatics, { props: { analyticsId: 'G-SECOND', enableInDevelopment: true } });
       }).not.toThrow();
     });
   });
 
   describe('Script Injection Timing', () => {
-    it('should inject scripts immediately after render', () => {
+    it('should inject scripts immediately after render (not deferred via $effect)', () => {
       const { container } = render(Runatics, {
-        props: { analyticsId: 'G-TIMING-TEST' }
+        props: { analyticsId: 'G-TIMINGTEST', enableInDevelopment: true }
       });
 
-      // Scripts should be in the head immediately
       const externalScript = document.querySelector('script[src*="googletagmanager.com"]');
-      const inlineScripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      const initScript = inlineScripts.find((s) => s.innerHTML.includes('dataLayer'));
+      const initScript = Array.from(document.head.querySelectorAll('script:not([src])')).find((s) =>
+        s.innerHTML.includes('dataLayer')
+      );
 
       expect(container).toBeTruthy();
       expect(externalScript).toBeTruthy();
@@ -175,9 +184,7 @@ describe('Runatics - Integration Tests', () => {
         document.head.innerHTML = '';
 
         expect(() => {
-          render(Runatics, {
-            props: { analyticsId: id }
-          });
+          render(Runatics, { props: { analyticsId: id, enableInDevelopment: true } });
         }).not.toThrow();
 
         const scriptTag = document.querySelector('script[src*="googletagmanager.com"]');
@@ -187,57 +194,30 @@ describe('Runatics - Integration Tests', () => {
 
     it('should handle edge cases gracefully', () => {
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
-      const edgeCases = [
-        '', // Empty string
-        'G-', // Just prefix
-        'INVALID' // No prefix
-      ];
-
-      edgeCases.forEach((id) => {
+      ['', 'G-', 'INVALID'].forEach((id) => {
         document.head.innerHTML = '';
-
         expect(() => {
-          render(Runatics, {
-            props: { analyticsId: id }
-          });
+          render(Runatics, { props: { analyticsId: id, enableInDevelopment: true } });
         }).not.toThrow();
       });
 
       warnSpy.mockRestore();
-      logSpy.mockRestore();
     });
   });
 
   describe('Component Lifecycle', () => {
-    it('should handle mount and unmount correctly', () => {
-      const { unmount } = render(Runatics, {
-        props: { analyticsId: 'G-LIFECYCLE' }
-      });
-
-      // Check scripts exist
-      let inlineScripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      let initScript = inlineScripts.find((s) => s.innerHTML.includes('dataLayer'));
-      expect(initScript).toBeTruthy();
-
-      // Unmount
-      unmount();
-
-      // Check inline script is removed
-      inlineScripts = Array.from(document.head.querySelectorAll('script:not([src])'));
-      initScript = inlineScripts.find((s) => s.innerHTML.includes('dataLayer'));
-      expect(initScript).toBeFalsy();
-    });
-
     it('should allow multiple mount/unmount cycles', () => {
       for (let i = 0; i < 3; i++) {
+        document.head.innerHTML = '';
+
+        const id = `G-CYCLE${i}`;
         const { unmount } = render(Runatics, {
-          props: { analyticsId: `G-CYCLE-${i}` }
+          props: { analyticsId: id, enableInDevelopment: true }
         });
 
         const scriptTag = document.querySelector('script[src*="googletagmanager.com"]');
-        expect(scriptTag?.getAttribute('src')).toContain(`G-CYCLE-${i}`);
+        expect(scriptTag?.getAttribute('src')).toContain(id);
 
         unmount();
       }

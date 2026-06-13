@@ -1,5 +1,11 @@
 # runatics
 
+## 0.2.1
+
+### Patch Changes
+
+- fix: bug
+
 ## 0.2.0
 
 ### Minor Changes
