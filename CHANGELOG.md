@@ -1,5 +1,19 @@
 # runatics
 
+## 0.3.0
+
+### Minor Changes
+
+- - **New Features**
+    - Added `enableInDevelopment` prop to force analytics tracking in development environments.
+  - **Bug Fixes**
+    - Fixed a bug in analytics script initialization.
+  - **Documentation**
+    - Significantly expanded README with comprehensive usage guides, installation instructions, configuration props, and implementation examples.
+  - **Chores**
+    - Version bumped to 0.2.1.
+    - Updated development dependencies.
+
 ## 0.2.1
 
 ### Patch Changes
